@@ -28,7 +28,7 @@ function vgo(graph) {
                 let area = this.get_area_by_id(vertex.id)
                 let around = this.get_neighbours_by_id(vertex.id).filter(n => {
                     let vert = this.get_vertex_by_id(n)
-                    return vert.value && vert.value !== vertex.value
+                    return vert.value !== null && vert.value !== vertex.value
                 }).map(n => {
                     return this.get_area_by_id(n)
                 })
