@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Simple</title>
+    <meta charset="utf-8" />
+</head>
+
+<body>
+    <script src="js/vgo.min.js"></script>
+    <script src="js/simple.js"></script>
+    <style>
+        table {
+            background: #ff0;
+        }
+
+        button {
+            width: 50%;
+            height: 50%;
+            display: none;
+        }
+
+        td {
+            width: 1in;
+            height: 1in;
+            border: 1px solid #000;
+            text-align: center;
+        }
+    </style>
+    <h1>Simple Go (2x2)</h1>
+    <hr>
+    <div>
+        <div></div>
+        <button style="display:block" onclick="pass()">pass</button>
+    </div>
+    <hr>
+    <table>
+        <tr>
+            <td id='TT' onclick="f(this)">
+                <button></button>
+            </td>
+            <td id='TF' onclick="f(this)">
+                <button></button>
+            </td>
+        </tr>
+        <tr>
+            <td id='FT' onclick="f(this)">
+                <button></button>
+            </td>
+            <td id='FF' onclick="f(this)">
+                <button></button>
+            </td>
+        </tr>
+    </table>
+    <script>
+        let game = simple()
+        function f(x) {
+            let turn = game.turn()
+            try {
+                game.play(x.id)
+                let status = game.status()
+                console.log(status)
+                status.forEach(s => {
+                    let element = document.getElementById(s.id)
+                    if (s.value === null) {
+                        element.children[0].style.display = 'none'
+                        return
+                    }
+                    element.children[0].style.display = 'inline'
+                    if (s.value === true) {
+                        element.children[0].style.background = '#000'
+                        return
+                    }
+                    if (s.value === false) {
+                        element.children[0].style.background = '#fff'
+                        return
+                    }
+                })
+            } catch (e) {
+                alert('ERROR')
+            }
+            fgt = x
+        }
+        function pass() {
+            game.play(null)
+        }
+    </script>
+</body>
+
+</html>
