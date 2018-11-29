@@ -49,7 +49,7 @@ function simple() {
             }
             turn = !turn
         },
-        status:function(){
+        status: function () {
             return game.get_vertices()
         },
         turn: function () {
